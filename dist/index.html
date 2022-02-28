@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wasm</title>
+  <script>
+    // const getWASM = async () => {
+    //   let importObj = {};
+    //   const res = await fetch('./assets/simple.wasm');
+    //   const buffer = await res.arrayBuffer();
+    //   const instance = await WebAssembly.instantiate(buffer, importObj)
+      
+    //   console.log(instance);
+    // }
+    const getWASM = () => {
+      var importObj = {
+        imports: {
+          imported_func: function(arg) {
+            console.log('@',arg);
+          }
+        }
+      };
+      // fetch('./assets/simple.wasm').then(res => {
+      //   res.arrayBuffer()
+      // }).then(buffer => {
+      //   WebAssembly.instantiate(buffer, importObj)
+      // }).then(results => {
+      //   results.instance.exports.exported_func();
+      // });
+      request = new XMLHttpRequest();
+      request.open('GET', './assets/simple.wasm');
+      request.responseType = 'arraybuffer';
+      request.send();
+
+      request.onload = function() {
+        var bytes = request.response;
+        WebAssembly.instantiate(bytes, importObj).then(results => {
+          // results.instance.exports.exported_func();
+          console.log(results);
+        });
+      };
+      
+    }
+  </script>
+</head>
+<body>
+  This is a wasm testing case
+  <button onclick="getWASM()">点击获取wasm</button>
+</body>
+</html>

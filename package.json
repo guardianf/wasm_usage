@@ -1,0 +1,20 @@
+{
+  "name": "wasm_usage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serv": "npx http-server dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guardianf/wasm_usage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guardianf/wasm_usage/issues"
+  },
+  "homepage": "https://github.com/guardianf/wasm_usage#readme"
+}
